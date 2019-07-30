@@ -59,7 +59,7 @@ export function* initGoogle () {
     // }
     const ga = window.gapi.auth2.getAuthInstance();
     const googleUser = yield call(() => new Promise((resolve, reject) => ga.signIn().then(resolve, reject)));
-    const { tokenId } = googleUser.getAuthResponse();
+    const tokenId  = googleUser.getAuthResponse().id_token;
 
     console.log('googleUser', googleUser);
     console.log('tokenId', tokenId);
