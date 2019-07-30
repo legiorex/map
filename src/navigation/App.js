@@ -9,7 +9,7 @@ import Private from './Private';
 import Public from './Public';
 
 // Styles
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 
 // Components
 // import { Loading } from "../components";

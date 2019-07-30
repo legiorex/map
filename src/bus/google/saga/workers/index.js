@@ -1,0 +1,1 @@
+export { initGoogle } from './initGoogle';

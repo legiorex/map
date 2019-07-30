@@ -5,9 +5,9 @@ import { connectRouter } from 'connected-react-router';
 import { history } from '../init/middleware/core';
 
 // Reducers
-import { reducer as auth } from '../bus/auth/reducer';
+import { googleReducer as google } from '../bus/google/reducer';
 
 export const rootReducer = combineReducers({
-    auth,
-    router: connectRouter(history),
+  google,
+  router: connectRouter(history),
 });

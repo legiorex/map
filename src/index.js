@@ -8,6 +8,8 @@ import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from './init/middleware/core';
 import { store } from './init/store';
 
+import './theme/init.css';
+
 // App
 import App from './navigation/App';
 
