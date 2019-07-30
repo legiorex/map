@@ -1,6 +1,6 @@
 // Core
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Pages
 import Login from '../pages/Login';
@@ -9,14 +9,14 @@ import Login from '../pages/Login';
 import { book } from './book';
 
 export default class Public extends Component {
-    render () {
+  render () {
 
-        return (
-            <Switch>
-                <Route component = { Login } path = { book.login } />
-                <Route component = { Login } path = { book.signUp } />
-                <Redirect to = { book.login } />
-            </Switch>
-        );
-    }
+    return (
+      <Switch>
+        <Route component = { Login } path = { book.login } />
+        <Route component = { Login } path = { book.signUp } />
+        <Redirect to = { book.login } />
+      </Switch>
+    );
+  }
 }

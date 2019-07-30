@@ -1,5 +1,6 @@
 // Core
 import React, { Component } from 'react';
+import { Button, Row, Col } from 'antd';
 
 import Styles from './styles.module.css';
 
@@ -27,7 +28,20 @@ export default class Login extends Component {
 
     render () {
       return (
-        <div className = { Styles.login } >login </div>
+        <div className = { Styles.wrapper }>
+          <Row
+            align = 'middle'
+            justify = 'center'
+            type = 'flex'>
+            <Col span = { 8 } >
+
+              <Button icon = 'google' type = 'primary' >login</Button>
+
+            </Col>
+
+          </Row>
+        </div>
+
       );
     }
 }

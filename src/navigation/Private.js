@@ -11,10 +11,10 @@ import React, { Component } from 'react';
 // WebSocket
 // import { socket } from '../init/socket';
 export default class Private extends Component {
-    render () {
+  render () {
 
-        return (
-            <><div>private</div></>
-        );
-    }
+    return (
+      <><div>private</div></>
+    );
+  }
 }

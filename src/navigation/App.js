@@ -2,11 +2,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { hot } from 'react-hot-loader';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 // Routes
-import Private from "./Private";
-import Public from "./Public";
+import Private from './Private';
+import Public from './Public';
+
+// Styles
+import 'antd/dist/antd.css';
 
 // Components
 // import { Loading } from "../components";
@@ -16,7 +19,7 @@ import Public from "./Public";
 
 const mapStateToProps = (state) => {
 
-    return state;
+  return state;
 };
 
 // const mapDispatchToProps = {
@@ -30,10 +33,9 @@ const mapStateToProps = (state) => {
 export default class App extends Component {
 
     state = {
-        isAuthenticated: false,
+      isAuthenticated: false,
     }
 
- 
     // componentDidMount = () => {
     //     const { initializeAsync, listenConnection } = this.props;
 
@@ -48,16 +50,16 @@ export default class App extends Component {
     // }
 
     // signIn = () => {
-        
+
     //     const authOk = (googleUser) => {
     //         const nameUser = googleUser.getBasicProfile().getName();
     //         this.setState({ nameUser })
     //     }
-        
+
     //     const authErr = () => console.log('Auth Err')
-        
+
     //     const GoogleAuth = window.gapi.auth2.getAuthInstance()
-        
+
     //     GoogleAuth.signIn({
     //         scope: 'profile email',
     //     }).then(authOk, authErr)
@@ -66,15 +68,15 @@ export default class App extends Component {
     // signOut = () => {
     //     const GoogleAuth = window.gapi.auth2.getAuthInstance();
     //     GoogleAuth.signOut().then(
-    //         ()=> console.log('signOut Ok'), 
+    //         ()=> console.log('signOut Ok'),
     //         ()=> console.log('signOut Err')
     //     )
     // }
 
     render () {
-        const { isAuthenticated} = this.state;
+      const { isAuthenticated } = this.state;
 
-        return isAuthenticated ? <Private /> : <Public />;
+      return isAuthenticated ? <Private /> : <Public />;
 
     }
 }

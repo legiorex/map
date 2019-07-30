@@ -1,4 +1,9 @@
-.login{
-    color: blue;
-    user-select: none;
+.blockWrapper{
+    display: flex;
+    justify-content: center;
+}
+.wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
 }

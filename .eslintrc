@@ -7,6 +7,12 @@ settings:
 
 parserOptions:
   sourceType: "module"
+  ecmaFeatures: {
+    "experimentalObjectRestSpread": true,
+    "experimentalDecorators": true,
+    "jsx": true,
+    "legacyDecorators": true,
+  }
 
 plugins:
   - react
@@ -152,7 +158,7 @@ rules:
   id-blacklist: 1
   indent: [1, 2, { "SwitchCase": 1 }]
   jsx-quotes: [1, "prefer-single"]
-  quotes: ["error", "single"]
+  quotes: [2, "single", { "avoidEscape": true }]
   keyword-spacing: 1
   linebreak-style: 0
   lines-around-comment: 1

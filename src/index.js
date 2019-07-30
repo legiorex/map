@@ -12,11 +12,11 @@ import { store } from './init/store';
 import App from './navigation/App';
 
 render(
-    <Provider store = { store }>
-        <Router history = { history }>
-            <App />
-        </Router>
-    </Provider>
-    ,
-    document.getElementById("root")
+  <Provider store = { store }>
+    <Router history = { history }>
+      <App />
+    </Router>
+  </Provider>
+  ,
+  document.getElementById('root')
 );
