@@ -1,3 +1,4 @@
 export const types = {
-    TYPE: 'TYPE',
+  // ASYNC
+  AUTHENTICATE_ASYNC: 'AUTHENTICATE_ASYNC',
 };

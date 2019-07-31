@@ -1,10 +1,10 @@
 // Types
 import { types } from './types';
 
-export const actions = {
-    action: () => {
-        return {
-            type: types.TYPE,
-        };
-    },
+export const authActions = {
+  authenticateAsync: () => {
+    return {
+      type: types.AUTHENTICATE_ASYNC,
+    };
+  },
 };
