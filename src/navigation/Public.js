@@ -14,7 +14,6 @@ export default class Public extends Component {
     return (
       <Switch>
         <Route component = { Login } path = { book.login } />
-        <Route component = { Login } path = { book.signUp } />
         <Redirect to = { book.login } />
       </Switch>
     );

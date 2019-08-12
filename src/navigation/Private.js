@@ -1,20 +1,25 @@
 // Core
 import React, { Component } from 'react';
-// import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Pages
-// import { Feed, Profile, NewPassword } from '../pages';
+import Users from '../pages/Users';
+import Quiz from '../pages/Quiz';
+import Responses from '../pages/Responses';
 
 // Instruments
-// import { book } from './book';
+import { book } from './book';
 
-// WebSocket
-// import { socket } from '../init/socket';
 export default class Private extends Component {
   render () {
 
     return (
-      <><div>private</div></>
+      <Switch>
+        <Route component = { Users } path = { book.users } />
+        <Route component = { Quiz } path = { book.quiz } />
+        <Route component = { Responses } path = { book.responses } />
+        <Redirect to = { book.users } />
+      </Switch>
     );
   }
 }

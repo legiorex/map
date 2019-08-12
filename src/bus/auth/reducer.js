@@ -1,13 +1,28 @@
 // Types
 import { types } from './types';
-const initialState = {};
+const initialState = {
+  isAuthenticated: false,
+  isInitialized:   false,
+};
 
-export const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case types.TYPE:
-            return state;
+export const authReducer = (state = initialState, action) => {
 
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case types.AUTHENTICATE:
+
+      return Object.assign({}, state, {
+        isAuthenticated: true,
+      });
+
+    case types.INITIALIZE:
+
+      return Object.assign({}, state, {
+        isInitialized: true,
+      });
+      // case types.LOGOUT:
+
+    //   return state.set('isAuthenticated', false);
+    default:
+      return state;
+  }
 };

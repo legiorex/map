@@ -5,9 +5,10 @@ import { connectRouter } from 'connected-react-router';
 import { history } from '../init/middleware/core';
 
 // Reducers
-import { googleReducer as google } from '../bus/google/reducer';
+import { mapReducer as map } from '../bus/map/reducer';
+
 
 export const rootReducer = combineReducers({
-  google,
+  map,
   router: connectRouter(history),
 });

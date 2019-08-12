@@ -1,0 +1,1 @@
+export { getDepart } from './getDepart';

@@ -1,8 +1,7 @@
 {
-  "name": "pulseteam_adm",
+  "name": "map",
   "version": "0.1.0",
   "private": true,
-  
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
@@ -32,10 +31,11 @@
     "customize-cra": "^0.4.1",
     "react-app-rewire-postcss": "^3.0.2",
     "react-app-rewired": "^2.1.3",
-    "react-hot-loader": "^4.12.9"
+    "react-hot-loader": "^4.12.9",
+    "redux-logger": "^3.0.6"
   },
   "dependencies": {
-    "antd": "^3.20.7",
+    "antd": "^3.21.4",
     "autoprefixer": "^9.6.1",
     "connected-react-router": "^6.5.2",
     "formik": "^1.5.8",

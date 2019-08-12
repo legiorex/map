@@ -1,4 +1,6 @@
 export const book = Object.freeze({
-    login:  '/login',
-    signUp: '/sign-up',
+  login:     '/login',
+  users:     '/users',
+  quiz:      '/quiz',
+  responses: '/responses',
 });

@@ -1,4 +1,14 @@
 export const types = {
-  // ASYNC
+  // Sync
+  AUTHENTICATE:       'AUTHENTICATE',
+  INITIALIZE:         'INITIALIZE',
+  LOGOUT:             'LOGOUT',
+  REMEMBER:           'REMEMBER',
+  // Async
+  GOOGLE_INIT:        'GOOGLE_INIT',
+  SIGNUP_ASYNC:       'SIGNUP_ASYNC',
+  LOGIN_ASYNC:        'LOGIN_ASYNC',
   AUTHENTICATE_ASYNC: 'AUTHENTICATE_ASYNC',
+  INITIALIZE_ASYNC:   'INITIALIZE_ASYNC',
+  LOGOUT_ASYNC:       'LOGOUT_ASYNC',
 };
