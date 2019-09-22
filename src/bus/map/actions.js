@@ -2,19 +2,17 @@
 import { types } from './types';
 
 export const mapActions = {
-  // Sync
-  mapInit: (map) => {
+
+  getMapApi: (mapApi) => {
     return {
-      type:    types.MAP_INIT,
-      payload: map,
+      type:    types.MAP_API,
+      payload: mapApi,
     };
   },
-
-  // Async
-  mapScript: (ref) => {
+  getMapRef: (map) => {
     return {
-      type:    types.GOOGLE_MAP_INIT,
-      payload: ref,
+      type:    types.MAP_CURRENT,
+      payload: map,
     };
   },
 
