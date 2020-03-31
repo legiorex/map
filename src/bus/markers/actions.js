@@ -9,5 +9,11 @@ export const markersActions = {
       payload: marker,
     };
   },
-  
+  removeMarker: (marker) => {
+    return {
+      type:    types.REMOVE_MARKER,
+      payload: marker,
+    };
+  },
+
 };

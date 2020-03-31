@@ -1,0 +1,18 @@
+.dashboard{
+    margin-right: 80px;
+    padding-top: 12px;
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+}
+.dashboardForm{
+    margin-bottom: 48px;
+}
+.inputTitleMarker{
+    border: 1px solid #47C2B1;
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+    padding-left: 15px;
+    font-size: 20px;
+}

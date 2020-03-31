@@ -10,8 +10,9 @@ export const polylineReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case types.CREATE_POLYLINE:
+      const newState = state.set('polyline', action.payload);
 
-      return state.set('polyline', action.payload);
+      return newState;
 
     default:
       return state;

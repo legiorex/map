@@ -1,0 +1,46 @@
+.itemMarker{
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #000;
+    margin-top: 20px;
+    align-items: center;
+    height: 50px;
+}
+.indexBlock{
+    display: flex;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: aqua;
+    color: azure;
+    font-size: 22px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    margin-right: 24px;
+}
+
+.buttonRemove {
+line-height: 40px;
+text-align: center;
+width: 40px;
+background-color: Salmon;
+height: 40px;
+border-radius: 50%;
+margin-right: 0;
+margin-left: auto;
+cursor: pointer;
+}
+.buttonRemove:hover{
+    background-color: red;
+
+}
+
+.buttonRemove::after{
+    content: '\2716';
+    font-size: 20px;
+
+}
+.title{
+    margin: 0;
+}

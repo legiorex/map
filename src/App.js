@@ -2,8 +2,7 @@
 import React from 'react';
 
 // Components
-import Maps from './pages/Maps';
-
+import Maps from 'Pages/Map';
 
 export const App = () => {
 

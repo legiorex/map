@@ -1,0 +1,8 @@
+.map {
+    height: 800px;
+    width: 800px;
+    overflow: hidden;
+    border: 2px solid #52616B;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+    border-radius: 25px;
+}

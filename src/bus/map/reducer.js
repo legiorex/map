@@ -15,6 +15,7 @@ export const mapReducer = (state = initialState, action) => {
     case types.MAP_API:
 
       return state.set('mapApi', action.payload);
+
     case types.MAP_CURRENT:
 
       return state.set('map', action.payload);

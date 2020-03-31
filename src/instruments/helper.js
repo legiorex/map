@@ -1,8 +1,11 @@
-export const loadScript = (src, onLoad) => {
-  const script = document.createElement('script');
 
-  script.src = src;
-  script.async = true;
-  document.body.appendChild(script);
-  script.onload = onLoad;
+const genId = () => `f${(~~(Math.random()*1e8)).toString(16)}`;
+
+const generateColor =() => {
+  return `#${Math.floor(Math.random()*16777215).toString(16)}`;
+};
+
+export {
+  genId,
+  generateColor
 };

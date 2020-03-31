@@ -7,11 +7,14 @@ export const markersReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case types.CREATE_MARKER:
-      const newState = state.concat(action.payload);
 
-      console.log('newState', newState)
+      return [...state, action.payload];
 
-      return newState;
+    case types.REMOVE_MARKER:
+
+      const updateState = state.filter((item) => item.markerId !== action.payload);
+
+      return updateState;
 
     default:
       return state;

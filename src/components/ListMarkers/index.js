@@ -1,47 +1,75 @@
 // Core
-import React, { memo, useState, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import Marker from '../Marker';
+import style from './style.module.css';
+const ListMarkers = ({
+  setCount,
+  count,
+  polyline,
+}) => {
 
+  const markers = useSelector((state) => state.markers);
 
-const Markers = memo((props) => {
-  const { markers } = props;
+  const onDragEnd = useCallback(({ destination, source, draggableId }) => {
+    console.log('~: markers', markers);
 
-  return markers.map((item, index) => {
-    
-    return (
+    console.log('~: onDragEnd -> draggableId', draggableId);
+    console.log('~: onDragEnd -> source', source);
+    // the only one that is required
+    console.log('~: onDragEnd -> destination', destination);
+    // const currentMarker = markers[source.index];
+    // // const dest = markers[destination.index];
 
-      <li key = { index }>
-        <div >
-          <h2>{item}</h2>
-        </div>
-      </li>
+    // const test = markers.splice(source.index, 1);
 
-    );
-  });
-});
+    // test.splice(destination.index, 0, currentMarker);
+    // console.log('~: onDragEnd -> test', test);
 
-export const ListMarkers = (props) => {
-
- 
-  const markersProps = useSelector(state => state.markers);
-
-  const [markers, setMarkers] = useState(null);
-
-  useEffect(() => {
-    setMarkers(markersProps);
-
-  }, [markersProps]);
-
+  }, [markers]);
 
   return (
-    <div>
+    <DragDropContext
+      onDragEnd = { onDragEnd }>
+      <div>
+        <Droppable droppableId = { 'droppable' } type = 'MARKER'>
+          {(provided, snapshot) => (
+            <div
+              className = { style.markers }
+              ref = { provided.innerRef }
+              // isDraggingOver = { snapshot.isDraggingOver }
+              { ...provided.droppableProps }>
+              {
+                markers.map((item, index) =>
+                  (
+                    <Marker
+                      color = { item.color }
+                      count = { count }
+                      indexMarker = { index }
+                      key = { item.markerId }
+                      markerId = { item.markerId }
+                      placemark = { item.placemark }
+                      polyline = { polyline }
+                      setCount = { setCount }
+                      titleMarker = { item.titleMarker }
+                    />
 
-      <ul>
-        { markers ? <Markers markers = { markers } /> : null }
-        
-      </ul>
-      
-    </div>
+                  )
+
+                )
+              }
+              {provided.placeholder}
+            </div>
+          )
+
+          }
+
+        </Droppable>
+
+      </div>
+    </DragDropContext>
   );
 };
 
+export default ListMarkers;

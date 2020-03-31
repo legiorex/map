@@ -1,12 +1,14 @@
 // Core
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Components
-import { ListMarkers } from '../ListMarkers';
-
+import ListMarkers from '../ListMarkers';
+import { genId, generateColor } from 'Instruments/helper';
 // Actions
-import { markersActions } from '../../bus/markers/actions';
+import { markersActions } from 'Bus/markers/actions';
+
+import style from './style.module.css';
 
 export const Dashboard = () => {
   const mapApi = useSelector((state) => state.map.get('mapApi'));
@@ -17,40 +19,62 @@ export const Dashboard = () => {
 
   const [titleMarker, setTitleMarker] = useState('');
   const [count, setCount] = useState(0);
-
   const center = [55.72, 37.64];
 
-  const addPoint = (balloonContent) => {
+  const changePolyline = useCallback((placemark) => {
+
+    if (!count && polyline.geometry.getLength() === 2) {
+      polyline.geometry.remove(1);
+    }
+
+    placemark.geometry.events.add('change', (e) => {
+
+      const indexOf = map.geoObjects.indexOf(placemark);
+
+      const newCoords = e.get('newCoordinates');
+
+      polyline.geometry.set(indexOf, newCoords);
+
+    });
+
+  }, [mapApi, map, polyline, count, setCount]);
+
+  const addPoint = useCallback((balloonContent) => {
     if (!polyline) {
 
       return null;
     }
     setCount(count + 1);
-
+    const color = generateColor();
     const placemark = new mapApi.Placemark(
+
       center,
       {
         iconContent: count + 1,
         balloonContent,
+        index:       count,
       },
       {
         draggable: true,
-
+        iconColor: color,
       }
     );
 
-    map.geoObjects.add(placemark);
-
+    map.geoObjects.add(placemark, count);
     polyline.geometry.set(count, placemark.geometry.getCoordinates());
 
-    placemark.geometry.events.add('change', (e) => {
-      const newCoords = e.get('newCoordinates');
+    dispatch(markersActions.createMarker({
+      markerId:    genId(),
+      markerIndex: count,
+      titleMarker,
+      placemark,
+      color,
+      coord:       placemark.geometry.getCoordinates(),
+    }));
 
-      polyline.geometry.set(count, newCoords);
-
-    });
-
-  };
+    changePolyline(placemark);
+    setTitleMarker('');
+  }, [mapApi, map, polyline, count, titleMarker]);
 
   const createdMarker = (event) => {
 
@@ -59,23 +83,36 @@ export const Dashboard = () => {
     } else {
       event.preventDefault();
       addPoint(titleMarker);
-      dispatch(markersActions.createMarker(titleMarker));
     }
 
   };
+
   const handleChange = (event) => {
     event.preventDefault();
     setTitleMarker(event.target.value);
   };
 
   return (
-    <div>
-      <form >
-        <div>Dashboard</div>
-        <input type = 'text' value = { titleMarker } onChange = { handleChange } />
-        <button type = 'submit' onClick = { createdMarker }>Создать маркер</button>
+    <div className = { style.dashboard }>
+      <form
+        className = { style.dashboardForm }
+        onSubmit = { createdMarker }>
+        <input
+          className = { style.inputTitleMarker }
+          placeholder = { 'Введите название метки' }
+          type = 'text'
+          value = { titleMarker }
+          onChange = { handleChange }
+        />
       </form>
-      <ListMarkers />
+      <ListMarkers
+        changePolyline = { changePolyline }
+        count = { count }
+        map = { map }
+        mapApi = { mapApi }
+        polyline = { polyline }
+        setCount = { setCount }
+      />
     </div>
   );
 };

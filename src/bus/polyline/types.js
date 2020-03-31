@@ -1,3 +1,4 @@
 export const types = {
   CREATE_POLYLINE: 'CREATE_POLYLINE',
+  REMOVE_POLYLINE: 'REMOVE_POLYLINE',
 };
