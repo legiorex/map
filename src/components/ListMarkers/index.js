@@ -1,29 +1,18 @@
 // Core
 import React, { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+
 import Marker from '../Marker';
 import style from './style.module.css';
 
-// Actions
-import { markersActions } from 'Bus/markers/actions';
-
 import { updatePoints } from 'Instruments';
 
-const ListMarkers = ({
-  setCount,
-  count,
-  // polyline,
-}) => {
-  const dispatch = useDispatch();
+const ListMarkers = ({ setCount, count }) => {
 
   const markers = useSelector((state) => state.markers);
 
-  const onDragEnd = useCallback(({ destination, source, draggableId }) => {
-
-    // dispatch(markersActions.updateMarkers({
-    //   sourceIndex:      source.index, destinationIndex: destination.index,
-    // }));
+  const onDragEnd = useCallback(({ destination, source }) => {
 
     updatePoints(destination.index, source.index);
 
@@ -34,11 +23,10 @@ const ListMarkers = ({
       onDragEnd = { onDragEnd }>
       <div>
         <Droppable droppableId = { 'droppable' } type = 'MARKER'>
-          {(provided, snapshot) => (
+          {(provided) => (
             <div
               className = { style.markers }
               ref = { provided.innerRef }
-              // isDraggingOver = { snapshot.isDraggingOver }
               { ...provided.droppableProps }>
               {
                 markers.map((item, index) =>
@@ -49,8 +37,6 @@ const ListMarkers = ({
                       indexMarker = { index }
                       key = { item.markerId }
                       markerId = { item.markerId }
-                      placemark = { item.placemark }
-                      // polyline = { polyline }
                       setCount = { setCount }
                       titleMarker = { item.titleMarker }
                     />

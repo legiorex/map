@@ -1,17 +1,10 @@
 // Core
-import React, { useRef, useEffect, useCallback, useState } from 'react';
-import { YMaps, Map as YandexMap } from 'react-yandex-maps';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 
 import style from './style.module.css';
 
-// Actions
-import { mapActions } from 'Bus/map/actions';
-// import { polylineActions } from 'Bus/polyline/actions';
-
 // Instruments
-import { renderMap, initPolyline, initMap } from 'Instruments';
-import { loadScript, newScript, yandexMap } from 'Instruments/helper';
+import { loadScript, yandexMap } from 'Instruments/helper';
 
 const center = [55.72, 37.64];
 const zoom = 10;

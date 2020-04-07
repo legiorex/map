@@ -4,6 +4,10 @@ export const addPlacemark = (...arg) => {
 
   const { map, polyline } = window;
 
+  if (!index && polyline.geometry.getLength() === 2) {
+    polyline.geometry.remove(1);
+  }
+
   ymaps.modules.require(['Placemark', 'overlay.Placemark']).spread((Placemark) => {
 
     ymaps.Placemark = Placemark;

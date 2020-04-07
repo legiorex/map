@@ -1,8 +1,0 @@
-export const types = {
-
-  MAP_API:         'MAP_API',
-  MAP_CURRENT:     'MAP_CURRENT',
-  YANDEX_MAP_INIT: 'YANDEX_MAP_INIT',
-  RENDER_MAP:      'RENDER_MAP',
-  CREATE_POLYLINE: 'CREATE_POLYLINE',
-};
