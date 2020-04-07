@@ -6,7 +6,4 @@ export const renderMap = (ref, center, zoom) => {
     controls: [],
   });
 
-  // window.map = map;
-
-  // return map;
 };

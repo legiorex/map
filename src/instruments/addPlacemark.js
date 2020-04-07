@@ -4,8 +4,6 @@ export const addPlacemark = (...arg) => {
 
   const { map, polyline } = window;
 
-  console.log('~: addPlacemark -> polyline', polyline);
-
   ymaps.modules.require(['Placemark', 'overlay.Placemark']).spread((Placemark) => {
 
     ymaps.Placemark = Placemark;
@@ -27,11 +25,9 @@ export const addPlacemark = (...arg) => {
     map.geoObjects.add(placemark, index);
 
     polyline.geometry.set(index, placemark.geometry.getCoordinates());
+    const indexOf = map.geoObjects.indexOf(placemark);
 
     placemark.geometry.events.add('change', (e) => {
-      console.log('~: addPlacemark -> e', e);
-
-      const indexOf = map.geoObjects.indexOf(placemark);
 
       const newCoords = e.get('newCoordinates');
 
