@@ -16,6 +16,18 @@ export const markersReducer = (state = initialState, action) => {
 
       return updateState;
 
+    case types.UPDATE_MARKER:
+
+      const { sourceIndex, destinationIndex } = action.payload;
+
+      const sourceMarker = state[sourceIndex];
+
+      const newArray = [...state];
+
+      newArray.splice(sourceIndex, 1);
+      newArray.splice(destinationIndex, 0, sourceMarker);
+
+      return newArray;
     default:
       return state;
   }

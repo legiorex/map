@@ -1,6 +1,5 @@
 // Core
 import { applyMiddleware, compose } from 'redux';
-// import { customThunk } from './custom';
 import createSagaMiddleware from 'redux-saga';
 import { createBrowserHistory } from 'history';
 
@@ -29,9 +28,9 @@ const composeEnhancers = devtools ? devtools : compose;
 const middleware = [sagaMiddleware, routerMiddleware, logger];
 // const middleware = [sagaMiddleware, thunk, customThunk, routerMiddleware];
 
-// if (__DEV__) {
-//     middleware.push(logger);
-// }
+if (devtools) {
+  middleware.push(logger);
+}
 
 const enhancedStore = composeEnhancers(applyMiddleware(...middleware));
 

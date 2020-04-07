@@ -16,4 +16,22 @@ export const mapActions = {
     };
   },
 
+  // Async
+  initYandexMap: () => {
+    return {
+      type: types.YANDEX_MAP_INIT,
+    };
+  },
+  renderMap: (ref) => {
+    return {
+      type:    types.RENDER_MAP,
+      payload: ref,
+    };
+  },
+  createPolyline: (polylineState) => {
+    return {
+      type:    types.CREATE_POLYLINE,
+      payload: polylineState,
+    };
+  },
 };

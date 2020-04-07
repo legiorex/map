@@ -5,15 +5,18 @@ import { useSelector, useDispatch } from 'react-redux';
 // Components
 import ListMarkers from '../ListMarkers';
 import { genId, generateColor } from 'Instruments/helper';
+
+import { addPlacemark } from 'Instruments';
+
 // Actions
 import { markersActions } from 'Bus/markers/actions';
 
 import style from './style.module.css';
 
 export const Dashboard = () => {
-  const mapApi = useSelector((state) => state.map.get('mapApi'));
-  const map = useSelector((state) => state.map.get('map'));
-  const polyline = useSelector((state) => state.polyline.get('polyline'));
+  // const mapApi = useSelector((state) => state.map.get('mapApi'));
+  // const map = useSelector((state) => state.map.get('map'));
+  // const polyline = useSelector((state) => state.polyline.get('polyline'));
 
   const dispatch = useDispatch();
 
@@ -21,60 +24,71 @@ export const Dashboard = () => {
   const [count, setCount] = useState(0);
   const center = [55.72, 37.64];
 
-  const changePolyline = useCallback((placemark) => {
+  // const changePolyline = useCallback((placemark) => {
 
-    if (!count && polyline.geometry.getLength() === 2) {
-      polyline.geometry.remove(1);
-    }
+  //   if (!count && polyline.geometry.getLength() === 2) {
+  //     polyline.geometry.remove(1);
+  //   }
 
-    placemark.geometry.events.add('change', (e) => {
+  //   placemark.geometry.events.add('change', (e) => {
 
-      const indexOf = map.geoObjects.indexOf(placemark);
+  //     const indexOf = map.geoObjects.indexOf(placemark);
 
-      const newCoords = e.get('newCoordinates');
+  //     const newCoords = e.get('newCoordinates');
 
-      polyline.geometry.set(indexOf, newCoords);
+  //     polyline.geometry.set(indexOf, newCoords);
 
-    });
+  //   });
 
-  }, [mapApi, map, polyline, count, setCount]);
+  // }, [mapApi, map, polyline, count, setCount]);
 
   const addPoint = useCallback((balloonContent) => {
-    if (!polyline) {
 
-      return null;
-    }
+    // console.log('~: Dashboard -> polyline', polyline);
+
+    // if (!polyline) {
+
+    //   return null;
+    // }
     setCount(count + 1);
     const color = generateColor();
-    const placemark = new mapApi.Placemark(
+    // const placemark = new mapApi.Placemark(
 
-      center,
-      {
-        iconContent: count + 1,
+    //   center,
+    //   {
+    //     iconContent: count + 1,
+    //     balloonContent,
+    //     index:       count,
+    //   },
+    //   {
+    //     draggable: true,
+    //     iconColor: color,
+    //   }
+    // );
+
+    // map.geoObjects.add(placemark, count);
+    // polyline.geometry.set(count, placemark.geometry.getCoordinates());
+    if (window.map) {
+
+      addPlacemark(
+        center,
         balloonContent,
-        index:       count,
-      },
-      {
-        draggable: true,
-        iconColor: color,
-      }
-    );
-
-    map.geoObjects.add(placemark, count);
-    polyline.geometry.set(count, placemark.geometry.getCoordinates());
+        count + 1,
+        count,
+        color,
+      );
+    }
 
     dispatch(markersActions.createMarker({
       markerId:    genId(),
       markerIndex: count,
       titleMarker,
-      placemark,
       color,
-      coord:       placemark.geometry.getCoordinates(),
     }));
 
-    changePolyline(placemark);
+    // changePolyline(placemark);
     setTitleMarker('');
-  }, [mapApi, map, polyline, count, titleMarker]);
+  }, [count, titleMarker, window.map]);
 
   const createdMarker = (event) => {
 
@@ -106,11 +120,11 @@ export const Dashboard = () => {
         />
       </form>
       <ListMarkers
-        changePolyline = { changePolyline }
+        // changePolyline = { changePolyline }
         count = { count }
-        map = { map }
-        mapApi = { mapApi }
-        polyline = { polyline }
+        // map = { map }
+        // mapApi = { mapApi }
+        // polyline = { polyline }
         setCount = { setCount }
       />
     </div>

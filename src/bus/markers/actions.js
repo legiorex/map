@@ -15,5 +15,11 @@ export const markersActions = {
       payload: marker,
     };
   },
+  updateMarkers: (markers) => {
+    return {
+      type:    types.UPDATE_MARKER,
+      payload: markers,
+    };
+  },
 
 };

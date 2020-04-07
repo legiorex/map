@@ -1,31 +1,31 @@
 // Core
 import React, { useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Marker from '../Marker';
 import style from './style.module.css';
+
+// Actions
+import { markersActions } from 'Bus/markers/actions';
+
+import { updatePoints } from 'Instruments';
+
 const ListMarkers = ({
   setCount,
   count,
-  polyline,
+  // polyline,
 }) => {
+  const dispatch = useDispatch();
 
   const markers = useSelector((state) => state.markers);
 
   const onDragEnd = useCallback(({ destination, source, draggableId }) => {
-    console.log('~: markers', markers);
 
-    console.log('~: onDragEnd -> draggableId', draggableId);
-    console.log('~: onDragEnd -> source', source);
-    // the only one that is required
-    console.log('~: onDragEnd -> destination', destination);
-    // const currentMarker = markers[source.index];
-    // // const dest = markers[destination.index];
+    // dispatch(markersActions.updateMarkers({
+    //   sourceIndex:      source.index, destinationIndex: destination.index,
+    // }));
 
-    // const test = markers.splice(source.index, 1);
-
-    // test.splice(destination.index, 0, currentMarker);
-    // console.log('~: onDragEnd -> test', test);
+    updatePoints(destination.index, source.index);
 
   }, [markers]);
 
@@ -50,7 +50,7 @@ const ListMarkers = ({
                       key = { item.markerId }
                       markerId = { item.markerId }
                       placemark = { item.placemark }
-                      polyline = { polyline }
+                      // polyline = { polyline }
                       setCount = { setCount }
                       titleMarker = { item.titleMarker }
                     />

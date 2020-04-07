@@ -5,6 +5,7 @@ import { Draggable } from 'react-beautiful-dnd';
 
 // Actions
 import { markersActions } from 'Bus/markers/actions';
+import { removePlacemark } from 'Instruments';
 
 import style from './style.module.css';
 
@@ -13,30 +14,31 @@ const Marker = ({
   setCount,
   count,
   markerId,
-  placemark,
+  // placemark,
   titleMarker,
   indexMarker,
   color,
 }) => {
   const dispatch = useDispatch();
-  const map = useSelector((state) => state.map.get('map'));
-  const polyline = useSelector((state) => state.polyline.get('polyline'));
+  // const map = useSelector((state) => state.map.get('map'));
+  // const polyline = useSelector((state) => state.polyline.get('polyline'));
+
   const removeMarker = useCallback(() => {
 
     setCount(count - 1);
-    polyline.geometry.splice(indexMarker, 1);
-    map.geoObjects.splice(indexMarker, 1);
-    placemark.geometry.events.remove('change');
+    // polyline.geometry.splice(indexMarker, 1);
+    // map.geoObjects.splice(indexMarker, 1);
+    // placemark.geometry.events.remove('change');
 
-    map.geoObjects.each((item, index) => {
+    // map.geoObjects.each((item, index) => {
 
-      item.properties.set({ iconContent: index + 1 });
+    //   item.properties.set({ iconContent: index + 1 });
 
-    });
-
+    // });
+    removePlacemark(indexMarker);
     dispatch(markersActions.removeMarker(markerId));
 
-  }, [polyline, map, count, markers]);
+  }, [count, markers]);
 
   return (
     <Draggable
